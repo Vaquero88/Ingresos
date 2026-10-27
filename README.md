@@ -1,21 +1,24 @@
-# Cuenta Clara · publicación web
+# Ingresos Vaquero
 
-La versión de esta carpeta está lista para GitHub Pages. No incluye el historial importado del Excel. Usa Supabase Auth y políticas Row Level Security (RLS) para que cada cuenta solo pueda leer o cambiar sus propios datos.
+App de ingresos personales publicada en GitHub Pages y conectada con Supabase.
 
-## Antes de publicar
+## Acceso y sincronización
 
-1. En la app actual, abre **Copia de seguridad** y descarga el archivo JSON con tus datos.
-2. En tu cuenta nueva de GitHub, sube el contenido de esta carpeta al repositorio y a la rama `main`.
-3. En el proyecto Supabase, abre **SQL Editor** y ejecuta todo el contenido de `supabase/schema.sql`.
-4. En **Authentication → URL Configuration**, añade la URL exacta que tendrá GitHub Pages, por ejemplo `https://USUARIO.github.io/REPOSITORIO/`.
-5. En GitHub, abre **Settings → Pages** y selecciona **GitHub Actions**. El flujo de esta carpeta publica la app automáticamente al subir cambios a `main`.
-6. Abre la web publicada, pulsa **Copia de seguridad → Restaurar desde archivo** y elige el JSON descargado.
-7. Pulsa **Conectar cuenta**, crea una cuenta nueva de Supabase y confirma el correo si te lo pide. Al iniciar sesión, acepta subir tus datos actuales a la nube.
-8. En cada dispositivo, abre la misma web y entra con esa cuenta. La conexión del proyecto ya viene configurada.
+- Abre https://vaquero88.github.io/Ingresos/ e inicia sesión con el correo y contraseña de Supabase.
+- Cada navegador conserva la sesión hasta que pulses **Cerrar sesión**.
+- Los cambios se guardan automáticamente en Supabase; no hace falta sincronizar manualmente.
+- En otro dispositivo, abre la misma web e inicia sesión con la misma cuenta.
 
-## Seguridad y copias
+## Base de datos
 
-- La URL y la clave `publishable` configuradas en `index.html` son datos públicos de cliente; no incluyen permisos para saltarse las políticas RLS.
-- Nunca pongas la clave `service_role` o `sb_secret_` en la web ni en GitHub.
-- La sincronización guarda cambios automáticamente tras una breve pausa. Si falla, la app conserva los datos locales y muestra un estado de error.
-- Descarga copias JSON periódicamente desde **Copia de seguridad**. Ese archivo contiene datos personales; guárdalo en un lugar privado.
+El proyecto necesita que se ejecute una vez `supabase/schema.sql` en el **SQL Editor** de Supabase. En **Authentication → URL Configuration**, incluye `https://vaquero88.github.io/Ingresos/` como URL permitida.
+
+## Migrar los datos iniciales
+
+En la app local, descarga una copia desde **Copia de seguridad**. En la web, inicia sesión en el primer navegador que tenga esa copia restaurada; la app guardará automáticamente esos datos en Supabase si aún no hay datos para esa cuenta.
+
+## Copias y seguridad
+
+- Usa **Copia de seguridad** para descargar o restaurar un archivo JSON. Guárdalo en un lugar privado.
+- El repositorio público no contiene los importes del Excel.
+- La app usa una clave pública de Supabase en el navegador y Row Level Security para restringir los datos a la cuenta autenticada. No se publica ninguna clave secreta.
