@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ingresos-vaquero-pwa-v1';
+const CACHE_NAME = 'ingresos-vaquero-pwa-v2';
 const APP_FILES = [
   './index.html',
   './manifest.webmanifest',
